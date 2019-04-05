@@ -1,21 +1,26 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-
-<div class="card">
-	<img class="card-img-top" src="{{ url_for('static', filename='images/dna.png') }}" alt="Card image cap">
-	<div class="card-body">
-		<div class="card-text">
-			<h1>Welcome</h1>
-			<p class="card-text">Choose one of the following options...</p>
-			<div class="row">
-				<a href="{{ url_for('pingen') }}" class="btn btn-primary" role="button">New game</a>
-			</div>
-			<div class="row">
-				<a href="{{ url_for('join') }}" class="btn btn-secondary" role="button">Resume game</a>
+<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		<div class="card">
+			<img class="card-img-top" src="{{ url_for('static', filename='images/dna.png') }}" alt="Card image cap">
+			<div class="card-body">
+				<div class="card-text">
+					<h1>The Genome Code</h1>
+					<h3>Today is today. But there are many tomorrows</h3>
+					<div class="row">
+						<a href="{{ url_for('pingen') }}" class="btn btn-primary" role="button">New game</a>
+					</div>
+					<div class="row">
+						<a href="{{ url_for('join') }}" class="btn btn-secondary" role="button">Resume game</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div class="col-lg-4"></div>
 </div>
 
 {% endblock %}
