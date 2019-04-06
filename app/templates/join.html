@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		<div class="card">
+			<img class="card-img-top" src="{{ url_for('static', filename='images/dna.png') }}" alt="Card image cap">
+			<div class="card-body">
+				<div class="card-text">
+					<form method="GET" action="{{ url_for('join') }}">
+						<div class="form-group">
+							<label>Enter your 5 letter game pin:</label>
+							<input class="form-control" type="text" name="pin" required placeholder="XXXXX">
+						</div>
+						<div class="form-group">
+							<button class="form-control btn btn-primary" type="submit">Start game</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+
+{% endblock %}

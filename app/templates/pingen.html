@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		<div class="card">
+			<img class="card-img-top" src="{{ url_for('static', filename='images/dna.png') }}" alt="Card image cap">
+			<div class="card-body">
+				<div class="card-text">
+				{% if success is sameas true %}
+					<h1>{{ pin }}</h1>
+					<p>This is your unique game pin.<br/>We suggest you make a note of it!</p>
+					<p><em>Now, are you ready to start your adventure?</em></p>
+					<div class="row">
+						<a href="{{ url_for('join', pin=pin) }}" class="btn btn-primary" role="button">Start</a>
+					</div>
+				{% else %}
+					<p>Oops, something went wrong. Go back to try again.</p>
+					<div class="row">
+						<a href="{{ url_for('index') }}" class="btn btn-secondary" role="button">Go back</a>
+					</div>
+				{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+
+{% endblock %}

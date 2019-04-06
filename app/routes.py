@@ -9,20 +9,29 @@ def index():
         or join game with existing pin. if game pin
         in URL it will go straight to map.
     """
-    try:
-        game_pin = request.args.get('game_pin')
-        profile = mongo.db.profiles.find_one({"game_pin": game_pin})
-        game_pin = profile['game_pin']
-    except KeyError:
-        return render_template('home.html')
+    pin = request.args.get('pin')
+    if pin is not None:
+        if pin_exists(pin):
+            redirect(url_for('map', pin=pin))
+        else:
+            return render_template('home.html', page="home")
     else:
-        return redirect(url_for('map', game_pin=profile['game_pin']))
+        return render_template('home.html', page="home")
 
 @app.route('/join')
 def join():
-    """ user can join game by entering their game pin
+    """ user joins game automatically if pin in query
+        string else prompted to enter their game pin
     """
-    return "Join game. #todo"
+    pin = request.args.get('pin')
+    if pin is not None and pin_exists(pin):
+        result = update_strength(pin, "curiosity", 1)
+        if result["nModified"] > 0:
+            return redirect(url_for('map', pin=pin))
+        else:
+            return render_template('pingen.html', success=False)
+    else:
+        return render_template('join.html', page="resume game")
 
 @app.route('/pingen')
 def pingen():
@@ -30,15 +39,45 @@ def pingen():
     """
     pin = ""
     for i in range(0,5):
-        pin += ascii_letters[randint(0,len(ascii_letters))]
-    _id = mongo.db.profiles.insert_one({"game_pin": pin})
+        pin += ascii_letters[randint(0,len(ascii_letters)-1)]
+    if not pin_exists(pin):
+        _id = mongo.db.profiles.insert_one({"game_pin": pin})
     if _id.inserted_id:
-        return "Success. Pin is {}. #todo now join game!".format(pin)
+        return render_template('pingen.html', pin=pin, success=True)
     else:
-        return "Failed to make pin. #todo go try again!"
+        return render_template('pingen.html', success=False)
 
 @app.route('/map')
 def map():
     """ a map of locations and clues for each location
     """
-    return "Look at the map. #todo"
+    pin = request.args.get('pin')
+    if pin is not None and pin_exists(pin):
+        gf_rooms = mongo.db.rooms.find({"floor": 0})
+        ff_rooms = mongo.db.rooms.find({"floor": 1})
+        return render_template('map.html', gf_rooms=gf_rooms,
+                ff_rooms=ff_rooms, pin=pin, page="map")
+    else:
+        return render_template('pingen.html', success=False)
+
+# --------------------
+# GAMEPLAY FUNCTIONS
+# --------------------
+
+def update_strength(pin, strength, amount):
+    """ increase/decrease a strength in a specified
+        profile
+    """
+    result = mongo.db.profiles.update(
+            {"game_pin" : pin},
+            {"$inc": {"strengths."+strength: amount} } )
+    return result
+
+def pin_exists(pin):
+    """ check if pin exists """
+    cur = mongo.db.profiles.find({"game_pin": pin}).limit(1)
+    if cur.count() > 0:
+        return True
+    else:
+        return False
+
