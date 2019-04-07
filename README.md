@@ -31,7 +31,8 @@ To prepare the dev environment on your machine,
 
 + First initialise the database:
 		
-		mongoimport --db istapp --collection tasks --type json --file tasks.json --jsonArray
+		mongoimport --db istapp --collection rooms --type json --file rooms.json --jsonArray
+		mongoimport --db istapp --collection roles --type json --file roles.json --jsonArray
 
 + Now you can run it:
 

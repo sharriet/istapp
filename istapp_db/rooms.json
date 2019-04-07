@@ -1,0 +1,20 @@
+[
+	{
+		"floor": 0,
+		"number": "AG32",
+		"clue_text": "Exploration is what you do when you don't know what you're doing. That's what scientists do every day. If a scientist already knew what they were doing, they wouldn't be discovering anything, because they already knew what they were doing.",
+		"clue_author": "Neil deGrasse Tyson"
+	},
+	{
+		"floor": 1,
+		"number": "AF35",
+		"clue_text": "Any tool can be used for good or bad. It's really the ethics of the artist using it.",
+		"clue_author": "John Knoll"
+	},
+	{
+		"floor": 0,
+		"number": "AG32A",
+		"clue_text": "It is primarily by his intentions that a man's moral dispositions are judged.",
+		"clue_author": "Phillipa Foot"
+	}
+]

@@ -1,0 +1,42 @@
+[
+	{	"title": "UI designer",
+		"strengths": 
+			{	"meticulous": 5,
+			   	"creative": 4,
+				"critical": 3,
+				"good communicator": 3 
+			}
+	},
+	{	"title": "database administrator",
+		"strengths": 
+			{	"responsible": 5,
+			   	"love of learning": 3,
+			   	"meticulous": 4,
+				"logical": 4
+			}
+	},
+	{	"title": "data scientist",
+		"strengths":
+			{	"explorative": 5,
+			   	"critical": 4,
+				"creative": 4,
+			   	"persistent": 3
+			}
+	},
+	{	"title": "project manager",
+		"strengths":
+			{	"observant": 3,
+			   	"good communicator": 5,
+			   	"decision maker": 4,
+				"confident": 4
+			}
+	},
+	{	"title": "software developer",
+		"strengths": 
+			{	"explorative": 4,
+				"love of learning": 4,
+			   	"logical": 5,
+			   	"creative": 4
+			}
+	}
+]

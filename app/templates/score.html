@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		<div class="card">
+			<img class="card-img-top" src="{{ url_for('static', filename='images/dna.png') }}" alt="Card image cap">
+			<div class="card-body">
+				<div class="card-text">
+					{% if role is defined %}
+					<p>Your ideal computer science role is...</p>
+					<h1>{{ role.title }}</h1>
+					<h3>Strengths:
+						{% for key, value in role.strengths.items() %}
+							{{ key }}{% if not loop.last %},{% endif %}
+						{% endfor %}
+					</h3>
+					<p>Could this be your true calling?</p>
+					<p>Thanks for playing. If you had fun, please follow us (@LTUCompsci) or pop along to this evening's Codeup to continue learning.</p>
+					{% else %}
+						<p>Oops! Something must have gone wrong...or you didn't do anything yet?</p>
+						<p>Why not resume your game and explore your surroundings?</p>
+						<a href="{{ url_for('join', pin=pin) }}" class="btn btn-primary">Resume game</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+
+{% endblock %}
