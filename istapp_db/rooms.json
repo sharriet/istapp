@@ -9,12 +9,19 @@
 		"floor": 1,
 		"number": "AF35",
 		"clue_text": "Any tool can be used for good or bad. It's really the ethics of the artist using it.",
-		"clue_author": "John Knoll"
+		"clue_author": "John Knoll",
+		"task_name": "desktop-hackers"
 	},
 	{
 		"floor": 0,
 		"number": "AG32A",
 		"clue_text": "It is primarily by his intentions that a man's moral dispositions are judged.",
 		"clue_author": "Phillipa Foot"
+	},
+	{
+		"floor": 0,
+		"number": "AG32B",
+		"clue_text": "If we can't think for ourselves, if we're unwilling to question authority, then we're just putty in the hands of those in power. But if the citizens are educated and form their own opinions, then those in power work for us.",
+		"clue_author": "Carl Sagan"
 	}
 ]

@@ -1,0 +1,32 @@
+[
+	{	"task_name": "phys-encrypt",
+		"title": "Physical Encryption",
+		"task_text": "[some text preceding available actions]",
+		"outcomes": "[some user and system responses]" 
+	},
+	{	"task_name": "gt-seminar",
+		"title": "Genome Tech Seminar"
+	},
+	{	"task_name": "desktop-hackers",
+		"title": "Desktop Hackers",
+		"task_text": "What happened?",
+		"outcomes": [
+			{	"user_response": "nothing much",
+				"strength": "responsible",
+				"system_response": "a link to reset your password has been sent to your registered email address."
+			},
+			{	"user_response": "it went viral",
+				"strength": "decision maker",
+				"system_response": "your data has been shared with Wikimedia Foundation."
+			},
+			{	"user_response": "someone had better start looking for a new job",
+				"strength": "decision maker",
+				"system_response": "your database has been expunged." 
+			},		
+			{	"user_response": "someone will have some fun staff training videos to watch",
+				"strength": "responsible",
+				"system_response": "thanks for reporting this problem. the GenomeTech culture is one of 'blame free' error reporting, so we thank you for your honesty and will look for a constructive solution."
+			}
+		]
+	}
+]

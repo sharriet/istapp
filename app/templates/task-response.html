@@ -8,15 +8,10 @@
 			<img class="card-img-top" src="{{ url_for('static', filename='images/dna.png') }}" alt="Card image cap">
 			<div class="card-body">
 				<div class="card-text">
-					<form method="GET" action="{{ url_for('join') }}">
-						<div class="form-group">
-							<label>Enter your 5 letter game pin:</label>
-							<input class="form-control" type="text" name="pin" required placeholder="XXXXX">
-						</div>
-						<div class="form-group">
-							<button class="form-control btn btn-primary" type="submit">Start game</button>
-						</div>
-					</form>
+					<h1>The Genome Code</h1>
+					<h3>Things are getting interesting...</h3>
+					<p>Your response to the task has been recorded.</p>
+					<a class="btn btn-primary" href="{{ url_for('index', pin=pin) }}">Continue</a>
 				</div>
 			</div>
 		</div>
