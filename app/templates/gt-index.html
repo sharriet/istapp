@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/gt-custom.css') }}" rel="stylesheet">
+		<title>{{ page }}</title>
+	</head>
+	<body>
+		<nav class="container">
+			<form action="{{ url_for('desktop_hackers_submit') }}" method="POST">
+				<input type="submit" class="btn btn-primary" name="action" value="report problem">
+				<input type="submit" class="btn btn-secondary" name="action" value="reset password">
+			</form>
+		</nav>
+		<div class="container">
+			<h1>Hi <strong>Betsy</strong>, welcome back to Genome Tech DB</h1>
+			<p>Your DNA datasets are listed below.</p>
+			<div class="row">
+				<div class="col-md-8">
+					<h3>UK Crim 2019</h3>
+					<p>Sample of raw data:</p>
+					<table class="table">
+						<thead><tr>
+							<th>rsID</th>
+							<th>Chromosome</th>
+							<th>Position</th>
+							<th>Allele 1</th>
+							<th>Allele 2</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>rd4477212</td>
+							<td>1</td>
+							<td>72017</td>
+							<td>A</td>
+							<td>A</td></tr>
+							<tr><td>rd3034315</td>
+							<td>1</td>
+							<td>742429</td>
+							<td>A</td>
+							<td>A</td></tr>
+							<tr><td>rd3131972</td>
+							<td>1</td>
+							<td>742584</td>
+							<td>G</td>
+							<td>G</td></tr>
+							<tr><td>rd1212481</td>
+							<td>1</td>
+							<td>766409</td>
+							<td>G</td>
+							<td>G</td></tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-4">
+					<form action="{{ url_for('desktop_hackers_submit') }}" method="POST">
+						<input type="submit" class="btn btn-primary" name="action" value="delete data">
+						<input type="submit" class="btn btn-secondary" name="action" value="publish data">
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

@@ -9,23 +9,27 @@
 	},
 	{	"task_name": "desktop-hackers",
 		"title": "Desktop Hackers",
-		"task_text": "What happened?",
+		"task_text": "What do you think happened?",
 		"outcomes": [
-			{	"user_response": "nothing much",
+			{	"action": "reset password",
+				"user_response": "hopefully someone will take the hint",
 				"strength": "responsible",
-				"system_response": "a link to reset your password has been sent to your registered email address."
+				"system_response": "A link to reset your password has been sent to your registered email address."
 			},
-			{	"user_response": "it went viral",
+			{	"action": "publish data",
+				"user_response": "it went viral",
 				"strength": "decision maker",
-				"system_response": "your data has been shared with Wikimedia Foundation."
+				"system_response": "Your data has been shared with Wikimedia Foundation."
 			},
-			{	"user_response": "someone had better start looking for a new job",
+			{	"action": "delete data",
+				"user_response": "someone had better start looking for a new job",
 				"strength": "decision maker",
-				"system_response": "your database has been expunged." 
+				"system_response": "The database has been expunged." 
 			},		
-			{	"user_response": "someone will have some fun staff training videos to watch",
+			{	"action": "report problem",
+				"user_response": "someone will have some fun staff training videos to watch",
 				"strength": "responsible",
-				"system_response": "thanks for reporting this problem. the GenomeTech culture is one of 'blame free' error reporting, so we thank you for your honesty and will look for a constructive solution."
+				"system_response": "Thanks for reporting this problem. The Genome Tech culture is one of 'blame free' error reporting, so we thank you for your honesty and will look for a constructive solution."
 			}
 		]
 	}

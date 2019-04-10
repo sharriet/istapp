@@ -1,0 +1,12 @@
+.btn-primary { background-color: #25527B; border: none; }
+.btn-secondary { background-color: #5CA4BA; border: none; }
+.btn:hover { background-color: #666; }
+.row { border: 1px solid #ccc; }
+.col-md-4 { background: #eee; text-align: right; padding-top: 1em; }
+.col-md-8 { padding-top: 1em; }
+nav { 
+	padding: 1em 0; 
+	background: #ddd url("../images/scenarios/gt_logo_smll.jpg") top left no-repeat;
+	background-size: 100px;
+	height: 100px;
+	text-align: right; margin-bottom: 1em; }

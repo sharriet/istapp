@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<title>{{ page }}</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1>{{ response }}</h1>
+			<p>{{ response_text }}</p>
+			<a class="btn btn-primary" href="{{ url_for('desktop_hackers_index', logout='true') }}">Continue</a>
+		</div>
+	</body>
+</html>
+

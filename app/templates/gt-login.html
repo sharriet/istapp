@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<title>{{ page }}</title>
+	</head>
+	<body>
+		<form action="{{ url_for('desktop_hackers_login') }}" method="POST">
+			<input type="text" name="username">
+			<input type="password" name="password">
+			<button type="submit">Login</button>
+		</form>
+		{% if errs is defined %}
+		<p class="err">Login failed! Please correct the following errors.</p>
+		<ul>
+			{% for err in errs %}
+			<li class="err">{{ err }} not recognised</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	</body>
+</html>
+
