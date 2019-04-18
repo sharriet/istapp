@@ -13,6 +13,13 @@
 		"task_name": "desktop-hackers"
 	},
 	{
+		"floor": 1,
+		"number": "AF36",
+		"clue_text": "There are ethical choices in every single algorithm that we build.",
+		"clue_author": "Cathy O'Neil",
+		"task_name": "sorting-sorters"
+	},
+	{
 		"floor": 0,
 		"number": "AG32A",
 		"clue_text": "It is primarily by his intentions that a man's moral dispositions are judged.",

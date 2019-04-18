@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, session
 from app import app, mongo
 from random import randint
 from string import ascii_letters
+import speech_to_text as stt
 
 # ----------------------
 # GAME FRAMEWORK ROUTES
@@ -107,7 +108,10 @@ def task_submit():
     if request.method == "POST":
         strength = request.form["strength"]
         pin = request.form["pin"]
-        update_strength(pin, strength)
+        if len(strength) > 0:
+            strengths = strength.split(",")
+            for s in strengths:
+                update_strength(pin, s)
         return render_template( 'task-response.html', pin=pin, page="Task response" )
     else:
         pin = request.args.get('pin')
@@ -165,6 +169,31 @@ def desktop_hackers_submit():
         return render_template('gt-response.html', page='Genome Tech DB: Confirm action', response=response, response_text=response_text)
     else:
         return redirect(url_for('desktop_hackers_login'))
+
+@app.route('/sorting-sorters')
+def sorting_sorters():
+    """ response to user input view for sorting sorters scenario
+    """
+    resp = stt.listen_for_speech(trigwords=["bubble", "merge"])
+    if resp == "bubble":
+        return render_template("sorters.html", page="Webchat", alg="bubble")
+    elif resp == "merge":
+        return render_template("sorters.html", page="Webchat", alg="merge")
+    else:
+        return render_template("sorters.html", page="Webchat", alg="unsure")
+
+@app.route('/sorting-sorters-intro')
+def sorting_sorters_intro():
+    """ intro view for sorting sorters task
+    """
+    return render_template("sorting-sorters-intro.html")
+
+@app.route('/sorting-resources')
+def sorting_resources():
+    """ view with embedded youtube videos
+        #TODO not sure whether to use this or just bit.ly links
+    """
+    return render_template("sorting-resources.html", title="Sorting lessons")
 
 # --------------------
 # GAMEPLAY FUNCTIONS

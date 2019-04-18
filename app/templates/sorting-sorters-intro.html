@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<meta charset="UTF-8">
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link href="{{ url_for('static', filename='css/sorting-sorters.css') }}" rel="stylesheet">
+		<title>{{page}}</title>
+	</head>
+	<body>
+		<!-- TODO: make this a video -->
+		<p>Dr Badawi? Are you there? Would you be able to help me with something please? I'm in a bit of a fix...I'd really appreciate a few moments of your time...</p>
+		<p>I'm working on an algorithm which will identify the repetition in the DNA sequences. Of course, the first step is to sort them. Easier said than done!</p>
+		<p>I'm wondering which sorting algorithm to use...I've narrowed it down to 2 possibilities. I shared some links with you in the chat window. If you could take a look and let me know which you'd advise, I'd really appreciate it.</p>
+		<p>I think your mic might be muted there...just click it when you're ready to reply.</p>
+	<a href="{{ url_for('sorting_sorters') }}" class="btn btn-primary" id="btn-unmute">Unmute mic</a>
+	</body>
+</html>

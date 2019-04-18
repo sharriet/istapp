@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<meta charset="UTF-8">
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link href="{{ url_for('static', filename='css/sorting-sorters.css') }}" rel="stylesheet">
+		<title>{{page}}</title>
+	</head>
+	<body>
+	{% if alg == "bubble" %}
+	<p>Thanks! I'll use bubble sort then. Hopefully I won't screw this up and cost us that all important MoJ contract! Over and out!</p>
+	{% elif alg == "merge" %}
+	<p>Great! Merge sort it is. I agree this is probably the best way to go...and hopefully, if I get it right, we'll bag that MoJ contract! Bye for now!</p>
+	{% else %}
+	<p>No worries. I'm sure there's someone else around here who can help me. See you around!</p>
+	{% endif %}
+	<a href="{{ url_for('sorting_sorters_intro') }}" class="btn btn-primary">End call</a>
+	</body>
+</html>
