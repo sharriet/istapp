@@ -1,0 +1,73 @@
+header { 
+	padding: 1em 0; 
+	background: #ddd url("../images/scenarios/gt_logo_smll.jpg") top left no-repeat;
+	background-size: 100px;
+	height: 100px;
+	text-align: center;
+	margin-bottom: 1em; }
+#audio-controls {
+	border: 2px solid #666;
+	background: #777;
+	padding: 10px;
+}
+h1 { 
+	color: #666;
+}
+#video {
+	background: #000;
+	min-height: 315px;
+}
+#audio-controls a.btn {
+	padding: 5px 30px;
+	border: 1px solid #fff;
+}
+#btn-unmute {
+	background-color: rgb(200, 40, 20);
+}
+#btn-unmute:hover {
+	background-color: rgb(255, 40, 20);
+}
+#btn-hangup {
+	background-color: rgb(30, 200, 40);
+}
+#btn-hangup:hover {
+	background-color: rgb(30, 255, 40);
+}
+#chat-window {
+	border: 1px solid #fff;
+	border-radius: 5px;
+	background: #ddd;
+}
+#chat-window h3 {
+	background: #333;
+	color: #fff;
+	font-size: 14px;
+	padding: 4px 8px;
+}
+.chat {
+	padding: 10px;
+	margin: 5px;
+}
+.sam-chat {
+	padding-left: 60px;
+	background: #ddd url("../images/scenarios/sam-icon.png") top left no-repeat;
+}
+.erdaf-chat {
+	padding-right: 60px;
+	background: #ddd url("../images/scenarios/erdaf-icon.png") top right no-repeat;
+}
+.chat p {
+	border-radius: 8px;
+	padding: 4px 6px;
+	background: #fff;
+}
+#enter-text {
+	background: #fff;
+	padding: 12px 5px 0 5px;
+	color: #999;
+	font-size: 14px;
+	border: 1px solid rgb(0, 120, 255);
+}
+#enter-text i {
+	margin-right: 4px;
+}

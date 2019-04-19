@@ -188,12 +188,11 @@ def sorting_sorters_intro():
     """
     return render_template("sorting-sorters-intro.html")
 
-@app.route('/sorting-resources')
-def sorting_resources():
-    """ view with embedded youtube videos
-        #TODO not sure whether to use this or just bit.ly links
+@app.route('/sorting-sorters-end')
+def sorting_sorters_end():
+    """ view when call is ended in sorting sorters task
     """
-    return render_template("sorting-resources.html", title="Sorting lessons")
+    return render_template("sorting-sorters-intro.html")
 
 # --------------------
 # GAMEPLAY FUNCTIONS
