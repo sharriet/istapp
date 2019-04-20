@@ -71,3 +71,17 @@ h1 {
 #enter-text i {
 	margin-right: 4px;
 }
+#call-ended {
+	display: block;
+	width: 200px;
+	color: #fff;
+	text-align: center;
+	margin: 0 auto;
+	padding-top: 110px;
+}
+#call-ended .btn {
+	border: 1px solid #fff;
+}
+#call-ended .btn i {
+	margin-right: 5px;
+}

@@ -16,16 +16,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<!-- TODO: make this a video -->
 					<div id="video">
-					<p>Dr Badawi? Are you there? Would you be able to help me with something please? I'm in a bit of a fix...I'd really appreciate a few moments of your time...</p>
-					<p>I'm working on an algorithm which will identify the repetition in the DNA sequences. Of course, the first step is to sort them. Easier said than done!</p>
-					<p>I'm wondering which sorting algorithm to use...I've narrowed it down to 2 possibilities. I shared some links with you in the chat window. If you could take a look and let me know which you'd advise, I'd really appreciate it.</p>
-					<p>I think your mic might be muted there...just click it when you're ready to reply.</p>
+						<div id="call-ended">
+							<p>You left the video chat.</p>
+							<a href="{{ url_for('sorting_sorters_intro') }}" class=" btn btn-primary" id="bttn-resume"><i class="fa fa-play-circle"></i>Resume</a>
+						</div>
 					</div>
 					<div id="audio-controls">
-						<a href="{{ url_for('sorting_sorters') }}" class="btn btn-primary" id="btn-unmute"><i class="fa fa-microphone-slash" aria-hidden="true"></i></a>
-						<a href="{{ url_for('sorting_sorters_end') }}" class="btn btn-primary" id="btn-hangup"><i class="fa fa-phone" aria-hidden="true"></i></a>
+						<a href="#" class="btn btn-primary" id="btn-unmute"><i class="fa fa-microphone-slash" aria-hidden="true" onclick=""></i></a>
+						<a href="{{ url_for('sorting_sorters_intro') }}" class="btn btn-primary" id="btn-hangup"><i class="fa fa-phone" aria-hidden="true"></i></a>
 					</div>
 				</div>
 				<div class="col-lg-4">
@@ -52,8 +51,13 @@
 			var unmute = document.getElementById("btn-unmute");
 			unmute.onclick = function() {
 				var i = this.getElementsByTagName("i")[0]
-				i.classList.remove("fa-microphone-slash");
-				i.classList.add("fa-microphone");
+					if (i.classList.contains("fa-microphone")) {
+						i.classList.remove("fa-microphone");
+						i.classList.add("fa-microphone-slash");
+					} else {
+						i.classList.remove("fa-microphone-slash");
+						i.classList.add("fa-microphone");
+					}
 			}
 		</script>
 	</body>

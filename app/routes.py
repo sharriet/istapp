@@ -192,7 +192,7 @@ def sorting_sorters_intro():
 def sorting_sorters_end():
     """ view when call is ended in sorting sorters task
     """
-    return render_template("sorting-sorters-intro.html")
+    return render_template("sorting-sorters-end.html")
 
 # --------------------
 # GAMEPLAY FUNCTIONS
