@@ -1,12 +1,12 @@
 body { background-color: #0e1428; }
 p { color: #7b9e89; }
 a { color: #f18805; }
-h1 { font-family: 'Alegreya SC', serif; color: #fff; }
+h1 { font-family: 'Alegreya SC', serif; color: #fff; font-size: 7em; }
 h3 { 
 	font-family: 'Alegreya', serif;
 	font-style: italic; 
 	color: #7b9e89; 
-	font-size: 18px;
+	font-size: 5em;
 	margin-bottom: 1em;
 }
 .card { 
@@ -16,6 +16,7 @@ h3 {
 	background-color: none;
 	border: 2px solid #7b9e89;
 	text-align: center;
+	width: 100%;
 }
 .container{ 
 	background-color: none;
@@ -25,7 +26,7 @@ h3 {
 .map-card .card-img-top { margin: 0 0 4px; }
 .btn-link { background-color: rgb(156,192,170); }
 .row .btn { margin: 0.5em; }
-.btn { width: 100%; border: none; min-height: 40px; }
+.btn { width: 100%; border: none; min-height: 50px; font-size: 2em; }
 .btn-primary { background-color: #d95d39; text-align: center; color: #fff; border: none; }
 .btn-secondary { background-color: #f18805; text-align: center; color: #fff; border: none; }
 .btn:hover, a.btn:hover { background-color: #f0a202; }
