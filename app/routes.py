@@ -1,7 +1,9 @@
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, flash
 from app import app, mongo
 from random import randint
 from string import ascii_letters
+import string
+
 
 # ----------------------
 # GAME FRAMEWORK ROUTES
@@ -15,7 +17,7 @@ def index():
     """
     pin = request.args.get('pin')
     if pin is not None and pin_exists(pin):
-        return redirect( url_for('map', pin=pin) )
+        return redirect( url_for('phys-index') )
     else:
         return render_template('home.html', page="Home")
 
@@ -30,7 +32,7 @@ def join():
             update_strength(pin, "persistent")
         else:
             update_strength(pin, "explorative")
-        return redirect( url_for('map', pin=pin) )
+        return render_template('phys-index.html')
     else:
         return render_template('join.html', page="Resume game")
 
@@ -116,7 +118,62 @@ def task_submit():
 # ------------------------------------------
 # ROUTES ASSOCIATED WITH SPECIFIC SCENARIOS
 # ------------------------------------------
+# SCENARIOS 1
+@app.route('/phys-index')
+def phys_index():
+    """ the fake Genome Tech home view """
+    if session.get('encrypted'):
+        # will show raw data sample with encryption
+        return render_template('phys-encrypt-index.html', ciphertext_list = session['ciphertext_list'], page='Genome Tech DB: Home')
+    else:
+        # will show same raw data sample without encryption
+        return redirect(url_for('phys-index.html'))
 
+# this is the encryption method
+@app.route('/phys-encrypt', methods=["GET", "POST"])
+def phys_encrypt_index():
+    """ the fake Genome Tech encryption view """
+    if request.method == "POST":
+        #en_method = request.form["encrypt_method"]
+        en_key = int(request.form["encrypt_key"])
+        if en_key != None and en_key >= 1 and en_key <= 25:
+            ciphertext_list = []
+            plaintext_list = ["sample", "hg00512", "hg00701", "na18525", "na90918", "sex", "male", "female", "male", "female", "chromosome", "1", "1", "1", "1", "age", "32", "51", "44", "26", "allele 1", 
+"a", "a", "g", "g", "allele 2", "a", "a", "g", "g"]
+            for plaintext in plaintext_list:
+                ciphertext_list.append(caesar(plaintext, en_key))
+            
+            session['encrypted'] = True
+            session['key'] = en_key
+            session['ciphertext_list'] = ciphertext_list
+            return render_template('phys-encrypt-index.html', ciphertext_list = ciphertext_list)
+        else:
+            # should be with error
+            flash ("please insert a valid key")
+            return render_template('phys-index.html',  page='Genome Tech DB: Home')
+    else:
+        #without error
+        return render_template('phys-index.html',  page='Genome Tech DB: Home')
+
+# this is the decryption method
+@app.route('/phys-decrypt', methods=["GET", "POST"])
+def phys_decrypt_index():
+    """ the fake Genome Tech decryption view """
+    if request.method == "POST":
+        en_key = int(request.form["decrypt_key"])
+        if en_key != None and en_key >= 1 and en_key <= 25:
+            if en_key == session['key']:
+                session['decrypted'] = True
+                return render_template('phys-index.html')
+            else:
+                flash('key is not correct')
+                return render_template('phys-encrypt-index.html', ciphertext_list = session['ciphertext_list'])
+        else:
+            flash('inser a valid key')
+            return render_template('phys-index', page="Genome Tech DB: Login")
+
+
+# SCENARIOS 2
 @app.route('/desktop-hackers-index')
 def desktop_hackers_index():
     """ the fake Genome Tech home view """
@@ -170,6 +227,32 @@ def desktop_hackers_submit():
 # GAMEPLAY FUNCTIONS
 # --------------------
 
+def encrypt_data(en_method, en_key):
+    """ encrypt the fake raw data sample in the genome tech db
+    """
+    return data
+
+def caesar(plaintext, shift):
+ #   alphabet = string.ascii_lowercase
+  #  shifted_alphabet = alphabet[shift:] + alphabet[:shift]
+   # table = str.maketrans(alphabet, shifted_alphabet)
+    #return plaintext.translate(table)
+	
+	#shift %= 26 # Values greater than 26 will wrap around
+
+	alphabet_lower = string.ascii_lowercase
+	alphabet_upper = string.ascii_uppercase
+
+	shifted_alphabet_lower = alphabet_lower[shift:] + alphabet_lower[:shift]
+	shifted_alphabet_upper = alphabet_upper[shift:] + alphabet_upper[:shift]
+
+	alphabet = alphabet_lower + alphabet_upper 
+	shifted_alphabet = shifted_alphabet_lower + shifted_alphabet_upper
+
+	table = str.maketrans(alphabet, shifted_alphabet) 
+
+	return plaintext.translate(table)
+	
 def update_strength(pin, strength):
     """ increment a strength in a specified profile
     """
