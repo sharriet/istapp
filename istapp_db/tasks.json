@@ -1,8 +1,40 @@
 [
 	{	"task_name": "phys-encrypt",
 		"title": "Physical Encryption",
-		"task_text": "[some text preceding available actions]",
-		"outcomes": "[some user and system responses]" 
+		"task_text": "What do you think happened",
+		"outcomes": [
+                       {	"action": "encrypt data",
+				"user_response": "keep it encrypted and safe",
+				"strength": "cautious",
+				"system_response": "Your data has been encrypted using Caesar cipher and your key."
+			},
+			{	"action": "decrypt data",
+				"user_response": "hopefully someone will use a breakable encryption method",
+				"strength": "logical",
+				"system_response": "your key is correct and your data has been decrypted."
+			},
+                        {	"action": "download data ",
+				"user_response": "hopefully it won't take time",
+				"strength": "decision maker",
+				"system_response": "Do you want files preformatted for use in analysis pipelines?."
+			},
+			{	"action": browse data",
+				"user_response": "someone had better start using a better encryption method",
+				"strength": "decision maker",
+				"system_response": "find genomic clones that contain a gene of interest." 
+			},		
+                        {	"action": "modify data",
+				"user_response": "someone had better start using a new encryption method",
+				"strength": "decision maker",
+				"system_response": "The data has been altered." 
+			},
+			{	"action": "report problem",
+				"user_response": "someone will have some fun staff training videos to watch",
+				"strength": "responsible",
+				"system_response": "Thanks for reporting this problem. The Genome Tech culture is one of 'blame free' error reporting, so we thank you for your honesty and will look for a constructive solution."
+	
+			}
+        ] 
 	},
 	{	"task_name": "gt-seminar",
 		"title": "Genome Tech Seminar"
