@@ -3,22 +3,42 @@
 	<head>
 		<meta charset="utf-8">
 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/gt-custom.css') }}" rel="stylesheet">
 		<title>{{ page }}</title>
 	</head>
 	<body>
-		<form action="{{ url_for('desktop_hackers_login') }}" method="POST">
-			<input type="text" name="username">
-			<input type="password" name="password">
-			<button type="submit">Login</button>
-		</form>
-		{% if errs is defined %}
-		<p class="err">Login failed! Please correct the following errors.</p>
-		<ul>
-			{% for err in errs %}
-			<li class="err">{{ err }} not recognised</li>
-			{% endfor %}
-		</ul>
-		{% endif %}
+		<header class="container">
+			<h1>GenomeTech DB</h1>
+		</header>
+		<div class="container" id="form-container">
+			<div class="row">
+				<div class="col-lg-3"></div>
+				<div class="col-lg-6">
+					<h2>Login</h2>
+					<form action="{{ url_for('desktop_hackers_login') }}" method="POST">
+						<div class="control-group">
+							<input class="form-control" type="text" name="username" placeholder="username">
+						</div>
+						<div class="control-group">
+
+							<input class="form-control" type="password" name="password" placeholder="password">
+						</div>
+						<div class="control-group">
+							<button class="form-control btn btn-primary" type="submit">Login</button>
+						</div>
+					</form>
+					{% if errs is defined %}
+					<p class="err">Login failed! Please correct the following errors.</p>
+					<ul>
+						{% for err in errs %}
+						<li class="err">{{ err }} not recognised</li>
+						{% endfor %}
+					</ul>
+					{% endif %}
+				</div>
+				<div class="col-lg-3"></div>
+			</div>
+		</div>
 	</body>
 </html>
 

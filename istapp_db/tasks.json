@@ -22,6 +22,10 @@
 				"user_response": "he's on the right track",
 				"strength": "love of learning,confident,logical"
 			},
+			{	"action": "ui critic",
+				"user_response": "no idea, but they should sack their UI designer",
+				"strength": "cautious"
+			},
 			{	"action": "unsure",
 				"user_response": "your guess is as good as mine",
 				"strength": "cautious"
