@@ -4,9 +4,7 @@ from random import randint
 from string import ascii_letters
 import string
 
-=======
 import speech_to_text as stt
->>>>>>> dd99535f88ea78c5a560e330571994d57c3cf258
 
 # ----------------------
 # GAME FRAMEWORK ROUTES
@@ -20,7 +18,7 @@ def index():
     """
     pin = request.args.get('pin')
     if pin is not None and pin_exists(pin):
-        return redirect( url_for('phys-index') )
+        return redirect( url_for('map'), pin=pin )
     else:
         return render_template('home.html', page="Home")
 
@@ -35,7 +33,7 @@ def join():
             update_strength(pin, "persistent")
         else:
             update_strength(pin, "explorative")
-        return render_template('phys-index.html')
+        return redirect( url_for('map', pin=pin) )
     else:
         return render_template('join.html', page="Resume game")
 
