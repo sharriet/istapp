@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<meta charset="UTF-8">
+		<!-- Font Awesome -->
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link href="{{ url_for('static', filename='css/sorting-sorters.css') }}" rel="stylesheet">
+		<title>{{page}}</title>
+	</head>
+	<body>
+		<header class="container">
+			<h1>GenomeTech Internal Chat Service</h1>
+		</header>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<!-- TODO: make this a video -->
+					<div id="video">
+					{% if alg == "bubble" %}
+					<p>Thanks! I'll use bubble sort then. Hopefully I won't screw this up and cost us that all important MoJ contract! Over and out!</p>
+					{% elif alg == "merge" %}
+					<p>Great! Merge sort it is. I agree this is probably the best way to go...and hopefully, if I get it right, we'll bag that MoJ contract! Bye for now!</p>
+					{% else %}
+					<p>No worries. I'm sure there's someone else around here who can help me. See you around!</p>
+					{% endif %}
+					</div>
+					<div id="audio-controls">
+						<a href="#" class="btn btn-primary" id="btn-unmute"><i class="fa fa-microphone" aria-hidden="true" onclick=""></i></a>
+						<a href="{{ url_for('sorting_sorters_end') }}" class="btn btn-primary" id="btn-hangup"><i class="fa fa-phone" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div id="chat-window">
+						<h3>Sam Williams</h3>
+						<div class="chat sam-chat">
+							<p>The links for you...</p>
+						</div>
+						<div class="chat sam-chat">
+							<p><a href="https://youtu.be/KFPnjs4GgyA" target="_blank">bubble sort</a></p>
+							<p><a href="https://youtu.be/3BTLnxnGOgA" target="_blank">merge sort</a></p>
+						</div>
+						<div class="chat erdaf-chat">
+							<p>Thanks</p>
+						</div>
+						<div id="enter-text">
+							<p><i class="fa fa-smile-o"></i>Send a message</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var unmute = document.getElementById("btn-unmute");
+			unmute.onclick = function() {
+				var i = this.getElementsByTagName("i")[0]
+					if (i.classList.contains("fa-microphone")) {
+						i.classList.remove("fa-microphone");
+						i.classList.add("fa-microphone-slash");
+					} else {
+						i.classList.remove("fa-microphone-slash");
+						i.classList.add("fa-microphone");
+					}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<meta charset="UTF-8">
+		<!-- Font Awesome -->
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link href="{{ url_for('static', filename='css/sorting-sorters.css') }}" rel="stylesheet">
+		<title>{{page}}</title>
+	</head>
+	<body>
+		<header class="container">
+			<h1>GenomeTech Internal Chat Service</h1>
+		</header>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<!-- TODO: make this a video -->
+					<div id="video">
+					<p>Dr Badawi? Are you there? Would you be able to help me with something please? I'm in a bit of a fix...I'd really appreciate a few moments of your time...</p>
+					<p>I'm working on an algorithm which will identify the repetition in the DNA sequences. Of course, the first step is to sort them. Easier said than done!</p>
+					<p>I'm wondering which sorting algorithm to use...I've narrowed it down to 2 possibilities. I shared some links with you in the chat window. If you could take a look and let me know which you'd advise, I'd really appreciate it.</p>
+					<p>I think your mic might be muted there...just click it when you're ready to reply.</p>
+					</div>
+					<div id="audio-controls">
+						<a href="{{ url_for('sorting_sorters') }}" class="btn btn-primary" id="btn-unmute"><i class="fa fa-microphone-slash" aria-hidden="true"></i></a>
+						<a href="{{ url_for('sorting_sorters_end') }}" class="btn btn-primary" id="btn-hangup"><i class="fa fa-phone" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div id="chat-window">
+						<h3>Sam Williams</h3>
+						<div class="chat sam-chat">
+							<p>The links for you...</p>
+						</div>
+						<div class="chat sam-chat">
+							<p><a href="https://youtu.be/KFPnjs4GgyA" target="_blank">bubble sort</a></p>
+							<p><a href="https://youtu.be/3BTLnxnGOgA" target="_blank">merge sort</a></p>
+						</div>
+						<div class="chat erdaf-chat">
+							<p>Thanks</p>
+						</div>
+						<div id="enter-text">
+							<p><i class="fa fa-smile-o"></i>Send a message</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var unmute = document.getElementById("btn-unmute");
+			unmute.onclick = function() {
+				var i = this.getElementsByTagName("i")[0]
+				i.classList.remove("fa-microphone-slash");
+				i.classList.add("fa-microphone");
+			}
+		</script>
+	</body>
+</html>

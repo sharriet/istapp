@@ -39,6 +39,27 @@
 	{	"task_name": "gt-seminar",
 		"title": "Genome Tech Seminar"
 	},
+	{	"task_name": "pi-talk",
+		"title": "Privacy International Talk"
+	},
+	{	"task_name": "sorting-sorters",
+		"title": "Sorting Sorters",
+		"task_text": "How's Sam doing?",
+		"outcomes": [
+			{	"action": "bubble sort",
+				"user_response": "he's a dead man walking",
+				"strength": "love of learning,confident,logical"
+			},
+			{	"action": "merge sort",
+				"user_response": "he's on the right track",
+				"strength": "love of learning,confident,logical"
+			},
+			{	"action": "unsure",
+				"user_response": "your guess is as good as mine",
+				"strength": "cautious"
+			}
+		]
+	},
 	{	"task_name": "desktop-hackers",
 		"title": "Desktop Hackers",
 		"task_text": "What do you think happened?",

@@ -4,6 +4,9 @@ from random import randint
 from string import ascii_letters
 import string
 
+=======
+import speech_to_text as stt
+>>>>>>> dd99535f88ea78c5a560e330571994d57c3cf258
 
 # ----------------------
 # GAME FRAMEWORK ROUTES
@@ -109,7 +112,10 @@ def task_submit():
     if request.method == "POST":
         strength = request.form["strength"]
         pin = request.form["pin"]
-        update_strength(pin, strength)
+        if len(strength) > 0:
+            strengths = strength.split(",")
+            for s in strengths:
+                update_strength(pin, s)
         return render_template( 'task-response.html', pin=pin, page="Task response" )
     else:
         pin = request.args.get('pin')
@@ -222,6 +228,30 @@ def desktop_hackers_submit():
         return render_template('gt-response.html', page='Genome Tech DB: Confirm action', response=response, response_text=response_text)
     else:
         return redirect(url_for('desktop_hackers_login'))
+
+@app.route('/sorting-sorters')
+def sorting_sorters():
+    """ response to user input view for sorting sorters scenario
+    """
+    resp = stt.listen_for_speech(trigwords=["bubble", "merge"])
+    if resp == "bubble":
+        return render_template("sorters.html", page="Webchat", alg="bubble")
+    elif resp == "merge":
+        return render_template("sorters.html", page="Webchat", alg="merge")
+    else:
+        return render_template("sorters.html", page="Webchat", alg="unsure")
+
+@app.route('/sorting-sorters-intro')
+def sorting_sorters_intro():
+    """ intro view for sorting sorters task
+    """
+    return render_template("sorting-sorters-intro.html")
+
+@app.route('/sorting-sorters-end')
+def sorting_sorters_end():
+    """ view when call is ended in sorting sorters task
+    """
+    return render_template("sorting-sorters-end.html")
 
 # --------------------
 # GAMEPLAY FUNCTIONS
