@@ -58,9 +58,10 @@ def map():
     pin = request.args.get('pin')
     if pin is not None and pin_exists(pin):
         gf_rooms = mongo.db.rooms.find({"floor": 0})
-        ff_rooms = mongo.db.rooms.find({"floor": 1})
+        print(gf_rooms)
+        #ff_rooms = mongo.db.rooms.find({"floor": 1})
         return render_template('map.html', gf_rooms=gf_rooms,
-                ff_rooms=ff_rooms, pin=pin, page="map")
+                pin=pin, page="map")
     else:
         return render_template('pingen.html', success=False, page="Oops!")
 
@@ -122,84 +123,22 @@ def task_submit():
 # ------------------------------------------
 # ROUTES ASSOCIATED WITH SPECIFIC SCENARIOS
 # ------------------------------------------
-# SCENARIOS 1
-@app.route('/phys-index')
-def phys_index():
-    """ the fake Genome Tech home view """
-    if session.get('encrypted'):
-        # will show raw data sample with encryption
-        return render_template('phys-encrypt-index.html', ciphertext_list = session['ciphertext_list'], page='Genome Tech DB: Home')
-    else:
-        # will show same raw data sample without encryption
-        return redirect(url_for('phys-index.html'))
 
-# this is the encryption method
-@app.route('/phys-encrypt', methods=["GET", "POST"])
-def phys_encrypt_index():
-    """ the fake Genome Tech encryption view """
-    if request.method == "POST":
-        #en_method = request.form["encrypt_method"]
-        en_key = int(request.form["encrypt_key"])
-        if en_key != None and en_key >= 1 and en_key <= 25:
-            ciphertext_list = []
-            plaintext_list = ["sample", "hg00512", "hg00701", "na18525", "na90918", "sex", "male", "female", "male", "female", "chromosome", "1", "1", "1", "1", "age", "32", "51", "44", "26", "allele 1", 
-"a", "a", "g", "g", "allele 2", "a", "a", "g", "g"]
-            for plaintext in plaintext_list:
-                ciphertext_list.append(caesar(plaintext, en_key))
-            
-            session['encrypted'] = True
-            session['key'] = en_key
-            session['ciphertext_list'] = ciphertext_list
-            return render_template('phys-encrypt-index.html', ciphertext_list = ciphertext_list)
-        else:
-            # should be with error
-            flash ("please insert a valid key")
-            return render_template('phys-index.html',  page='Genome Tech DB: Home')
-    else:
-        #without error
-        return render_template('phys-index.html',  page='Genome Tech DB: Home')
-
-# this is the decryption method
-@app.route('/phys-decrypt', methods=["GET", "POST"])
-def phys_decrypt_index():
-    """ the fake Genome Tech decryption view """
-    if request.method == "POST":
-        en_key = int(request.form["decrypt_key"])
-        if en_key != None and en_key >= 1 and en_key <= 25:
-            if en_key == session['key']:
-                session['decrypted'] = True
-                return render_template('phys-index.html')
-            else:
-                flash('key is not correct')
-                return render_template('phys-encrypt-index.html', ciphertext_list = session['ciphertext_list'])
-        else:
-            flash('inser a valid key')
-            return render_template('phys-index', page="Genome Tech DB: Login")
-
-
-# SCENARIOS 2
-@app.route('/desktop-hackers-index')
-def desktop_hackers_index():
-    """ the fake Genome Tech home view """
-    if session.get('logged_in'):
-        return render_template('gt-index.html', page='Genome Tech DB: Home')
-    else:
-        return redirect(url_for('desktop_hackers_login'))
-
+# SCENARIO/TASK 1: DESKTOP HACKERS
 @app.route('/desktop-hackers-login', methods=["GET", "POST"])
 def desktop_hackers_login():
     """ the fake Genome Tech login view """
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if username == "b.jameson" and password == "alice2009":
+        if username == "b.jameson" and password == "poppy2009":
             session['logged_in'] = True
             return redirect(url_for('desktop_hackers_index'))
         else:
             errs = []
             if username != "b.jameson":
                 errs.append("username")
-            if password != "alice2009":
+            if password != "poppy2009":
                 errs.append("password")
             return render_template('gt-login.html', page="Genome Tech DB: Login", errs=errs)
     else:
@@ -227,6 +166,29 @@ def desktop_hackers_submit():
     else:
         return redirect(url_for('desktop_hackers_login'))
 
+# SCENARIO/TASK 2: CAESAR CIPHER
+@app.route('/phys-encrypt', methods=["GET", "POST"])
+def phys_encrypt_index():
+    """ the fake Genome Tech decryption view
+        the cipher id is hard-coded for simplicity """
+    plaintext_data = ["rsID","Chromosome","Position","Allele 1","Allele 2","rd4477212","1","72017","A","A","rd3034315","1","742429","A","A","rd3131972","1","742584","G","G","rd1212481","1","766409","G","G"]
+    ciphertext_data = get_encrypted(plaintext_data, 19)
+    if request.method == "POST":
+        try:
+            en_key = int(request.form["decrypt_key"])
+        except:
+            err_text = "Invalid cipher key. Numerical values only!"
+            return render_template('phys-encrypt-index.html', data_list=ciphertext_data, err=err_text, page='Genome Tech DB: Home')
+        else:
+            if en_key == 19:
+                return render_template('phys-encrypt-index.html', data_list=plaintext_data, page='Genome Tech DB: Home', success=True)
+            else:
+                err_text = "Incorrect cipher key entered."
+                return render_template('phys-encrypt-index.html', data_list=ciphertext_data, err=err_text, page='Genome Tech DB: Home')
+    elif request.method == "GET":
+        return render_template('phys-encrypt-index.html', data_list=ciphertext_data, page='Genome Tech DB: Home')
+
+# SCENARIO/TASK 3: SORTING SORTERS
 @app.route('/sorting-sorters')
 def sorting_sorters():
     """ response to user input view for sorting sorters scenario
@@ -254,32 +216,27 @@ def sorting_sorters_end():
 # --------------------
 # GAMEPLAY FUNCTIONS
 # --------------------
-
-def encrypt_data(en_method, en_key):
-    """ encrypt the fake raw data sample in the genome tech db
-    """
-    return data
+def get_encrypted(plaintext_list, en_key):
+    """ helper function to encrypt a list of data items """
+    if en_key != None and en_key >= 1 and en_key <= 25:
+        ciphertext_list = []
+        for plaintext in plaintext_list:
+            ciphertext_list.append(caesar(plaintext, en_key))
+        return ciphertext_list
+    else:
+        return False
 
 def caesar(plaintext, shift):
- #   alphabet = string.ascii_lowercase
-  #  shifted_alphabet = alphabet[shift:] + alphabet[:shift]
-   # table = str.maketrans(alphabet, shifted_alphabet)
-    #return plaintext.translate(table)
-	
-	#shift %= 26 # Values greater than 26 will wrap around
-
-	alphabet_lower = string.ascii_lowercase
-	alphabet_upper = string.ascii_uppercase
-
-	shifted_alphabet_lower = alphabet_lower[shift:] + alphabet_lower[:shift]
-	shifted_alphabet_upper = alphabet_upper[shift:] + alphabet_upper[:shift]
-
-	alphabet = alphabet_lower + alphabet_upper 
-	shifted_alphabet = shifted_alphabet_lower + shifted_alphabet_upper
-
-	table = str.maketrans(alphabet, shifted_alphabet) 
-
-	return plaintext.translate(table)
+    """ function performs caesar encryption """
+    #shift %= 26 # Values greater than 26 will wrap around
+    alphabet_lower = string.ascii_lowercase
+    alphabet_upper = string.ascii_uppercase
+    shifted_alphabet_lower = alphabet_lower[shift:] + alphabet_lower[:shift]
+    shifted_alphabet_upper = alphabet_upper[shift:] + alphabet_upper[:shift]
+    alphabet = alphabet_lower + alphabet_upper 
+    shifted_alphabet = shifted_alphabet_lower + shifted_alphabet_upper
+    table = str.maketrans(alphabet, shifted_alphabet) 
+    return plaintext.translate(table)
 	
 def update_strength(pin, strength):
     """ increment a strength in a specified profile

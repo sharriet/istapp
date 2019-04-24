@@ -7,63 +7,53 @@
 		<title>{{ page }}</title>
 	</head>
 	<body>
+		<nav class="container">
+			<form action="{{ url_for('desktop_hackers_submit') }}" method="POST">
+				<input type="submit" class="btn btn-primary" name="action" value="report problem">
+				<input type="submit" class="btn btn-secondary" name="action" value="reset password">
+			</form>
+		</nav>
 		<div class="container">
 			<h1>Hi <strong>Betsy</strong>, welcome back to Genome Tech DB</h1>
-			<p>Your DNA datasets are listed below.</p>
+			<p>Your DNA datasets are listed below. Please note that your cipher key is required to display the unencrypted data.</p>
 			<div class="row">
 				<div class="col-md-8">
 					<h3>UK Crim 2019</h3>
 					<p>Sample of raw data:</p>
 					<table class="table">
-						<thead><tr>
-							<th>{{ciphertext_list[0]}}</th>
-							<th>{{ciphertext_list[5]}}</th>
-							<th>{{ciphertext_list[10]}}</th>
-							<th>{{ciphertext_list[15]}}</th>
-							<th>{{ciphertext_list[20]}}</th>
-							<th>{{ciphertext_list[25]}}</th></tr>
+						<thead>
+							<tr>
+							{% for i in range(5) %}
+							<th>{{data_list[i]}}</th>
+							{% endfor %}
+							</tr>
 						</thead>
 						<tbody>
-							<tr><td>{{ciphertext_list[1]}}</td>
-							<td>{{ciphertext_list[6]}}</td>
-							<td>{{ciphertext_list[11]}}</td>
-							<td>{{ciphertext_list[16]}}</td>
-							<td>{{ciphertext_list[21]}}</td>
-							<td>{{ciphertext_list[26]}}</td></tr>
-							<tr><td>{{ciphertext_list[2]}}</td>
-							<td>{{ciphertext_list[7]}}</td>
-							<td>{{ciphertext_list[12]}}</td>
-							<td>{{ciphertext_list[17]}}</td>
-							<td>{{ciphertext_list[22]}}</td>
-							<td>{{ciphertext_list[27]}}</td></tr>
-							<tr><td>{{ciphertext_list[3]}}</td>
-							<td>{{ciphertext_list[8]}}</td>
-							<td>{{ciphertext_list[13]}}</td>
-							<td>{{ciphertext_list[18]}}</td>
-							<td>{{ciphertext_list[23]}}</td>
-							<td>{{ciphertext_list[28]}}</td></tr>
-							<tr><td>{{ciphertext_list[4]}}</td>
-							<td>{{ciphertext_list[9]}}</td>
-							<td>{{ciphertext_list[14]}}</td>
-							<td>{{ciphertext_list[19]}}</td>
-							<td>{{ciphertext_list[24]}}</td>
-							<td>{{ciphertext_list[29]}}</td></tr>
+							{% for i in range(1,4) %}
+							<tr>
+								{% for j in range(5) %}
+								<td>{{data_list[i*5+j]}}</td>
+								{% endfor %}
+							</tr>
+							{% endfor %}
 						</tbody>
 					</table>
 				</div>
 				<div class="col-md-4">
-					<form action="{{ url_for('phys_decrypt_index') }}" method="POST">
-					    <input type="text" name="decrypt_key" placeholder="insert your key">
-						<input type="submit" class="btn btn-primary" name="action" value="decrypt data">	
-					</form>
-					{% if errs is defined %}
-		            <p class="err">Decryption failed! Please insert a valid key.</p>
-		            <ul>
-			            {% for err in errs %}
-			                <li class="err">{{ err }} not recognised</li>
-			            {% endfor %}
-		            </ul>
-		            {% endif %}
+					{% if success is defined %}
+						<form action="{{ url_for('desktop_hackers_submit') }}" method="POST">
+							<input type="submit" class="btn btn-primary" name="action" value="delete data">
+							<input type="submit" class="btn btn-secondary" name="action" value="publish data">
+						</form>
+					{% else %}
+						<form id="decrypt-form" action="{{ url_for('phys_encrypt_index') }}" method="POST">
+							<input type="text" name="decrypt_key" placeholder="Insert your key">
+							<button type="submit" class="btn btn-primary" name="action">decrypt data</button>
+						</form>
+						{% if err is defined %}
+						<p class="err">{{ err }}</p>
+						{% endif %}
+					{% endif %}
 				</div>
 			</div>
 		</div>

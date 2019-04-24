@@ -21,3 +21,14 @@ nav {
 .control-group {
 	margin: 0.5em 0;
 }
+#hdr-login { padding-left: 10px; }
+#login-form {
+	padding: 10px;
+}
+#decrypt-form input {
+	height: 36px;
+	padding: 2px;
+}
+#decrypt-form button.btn {
+	margin-top: -4px;
+}
