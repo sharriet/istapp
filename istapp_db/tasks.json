@@ -1,46 +1,57 @@
 [
-	{	"task_name": "phys-encrypt",
-		"title": "Physical Encryption",
-		"task_text": "What do you think happened",
-		"outcomes": [
-                       {	"action": "encrypt data",
-				"user_response": "keep it encrypted and safe",
-				"strength": "cautious",
-				"system_response": "Your data has been encrypted using Caesar cipher and your key."
-			},
-			{	"action": "decrypt data",
-				"user_response": "hopefully someone will use a breakable encryption method",
-				"strength": "logical",
-				"system_response": "your key is correct and your data has been decrypted."
-			},
-                        {	"action": "download data ",
-				"user_response": "hopefully it won't take time",
-				"strength": "decision maker",
-				"system_response": "Do you want files preformatted for use in analysis pipelines?."
-			},
-			{	"action": browse data",
-				"user_response": "someone had better start using a better encryption method",
-				"strength": "decision maker",
-				"system_response": "find genomic clones that contain a gene of interest." 
-			},		
-                        {	"action": "modify data",
-				"user_response": "someone had better start using a new encryption method",
-				"strength": "decision maker",
-				"system_response": "The data has been altered." 
-			},
-			{	"action": "report problem",
-				"user_response": "someone will have some fun staff training videos to watch",
-				"strength": "responsible",
-				"system_response": "Thanks for reporting this problem. The Genome Tech culture is one of 'blame free' error reporting, so we thank you for your honesty and will look for a constructive solution."
-	
-			}
-        ] 
-	},
 	{	"task_name": "gt-seminar",
-		"title": "Genome Tech Seminar"
+		"title": "Genome Tech Seminar",
+		"task_text": "What did you make of all that then?",
+		"outcomes": [
+			{	"action": "watched the video",
+				"user_response": "the guy is a loose canon",
+				"strength": "critical,responsible,observant"
+			},
+			{	"action": "watched the video",
+				"user_response": "I wish him every success",
+				"strength": "decision maker,explorative"
+			},
+			{	"action": "watched the video",
+				"user_response": "boredom and confusion",
+				"strength": "explorative"
+			}
+		]
 	},
-	{	"task_name": "pi-talk",
-		"title": "Privacy International Talk"
+	{	"task_name": "explorers",
+		"title": "Tour of Genome Tech",
+		"task_text": "What are you doing here?",
+		"outcomes": [
+			{	"action": "",
+				"user_response": "I'm here to for answers",
+				"strength": "persistent,decision maker,explorative"
+			},
+			{	"action": "",
+				"user_response": "I'm here to explore",
+				"strength": "love of learning,explorative"
+			},
+			{	"action": "",
+				"user_response": "waiting for all this to end",
+				"strength": "critical"
+			}
+		]
+	},
+	{	"task_name": "pi-seminar",
+		"title": "Privacy International Talk",
+		"task_text": "What did you make of that?",
+		"outcomes": [
+			{	"action": "",
+				"user_response": "I'd say we need to act",
+				"strength": "decision maker,creative,persistent"
+			},
+			{	"action": "",
+				"user_response": "we're all just cogs in a machine",
+				"strength": "logical,critical"
+			},
+			{	"action": "",
+				"user_response": "more boredom and confusion",
+				"strength": "explorative"
+			}
+		]
 	},
 	{	"task_name": "sorting-sorters",
 		"title": "Sorting Sorters",
@@ -56,11 +67,11 @@
 			},
 			{	"action": "ui critic",
 				"user_response": "no idea, but they should sack their UI designer",
-				"strength": "cautious"
+				"strength": "creative,critical,meticulous"
 			},
 			{	"action": "unsure",
 				"user_response": "your guess is as good as mine",
-				"strength": "cautious"
+				"strength": "responsible"
 			}
 		]
 	},
@@ -75,13 +86,18 @@
 			},
 			{	"action": "publish data",
 				"user_response": "it went viral",
-				"strength": "decision maker",
+				"strength": "decision maker,logical",
 				"system_response": "Your data has been shared with Wikimedia Foundation."
 			},
 			{	"action": "delete data",
 				"user_response": "someone had better start looking for a new job",
-				"strength": "decision maker",
+				"strength": "decision maker,logical",
 				"system_response": "The database has been expunged." 
+			},		
+			{	"action": "decrypted data",
+				"user_response": "they had better start looking for a better encryption method",
+				"strength": "responsible, logical",
+				"system_response": "The database was compromised." 
 			},		
 			{	"action": "report problem",
 				"user_response": "someone will have some fun staff training videos to watch",

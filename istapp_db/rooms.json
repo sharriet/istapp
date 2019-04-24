@@ -1,34 +1,37 @@
 [
 	{
 		"floor": 0,
-		"number": "AG32",
+		"number": "AG33",
 		"clue_text": "Exploration is what you do when you don't know what you're doing. That's what scientists do every day. If a scientist already knew what they were doing, they wouldn't be discovering anything, because they already knew what they were doing.",
-		"clue_author": "Neil deGrasse Tyson"
+		"clue_author": "Neil deGrasse Tyson",
+		"task_name": "explorers"
 	},
 	{
-		"floor": 1,
-		"number": "AF35",
+		"floor": 0,
+		"number": "AG32B",
 		"clue_text": "Any tool can be used for good or bad. It's really the ethics of the artist using it.",
 		"clue_author": "John Knoll",
 		"task_name": "desktop-hackers"
 	},
 	{
-		"floor": 1,
-		"number": "AF36",
+		"floor": 0,
+		"number": "AG32C",
 		"clue_text": "There are ethical choices in every single algorithm that we build.",
 		"clue_author": "Cathy O'Neil",
 		"task_name": "sorting-sorters"
 	},
 	{
 		"floor": 0,
-		"number": "AG32A",
+		"number": "AG32",
 		"clue_text": "It is primarily by his intentions that a man's moral dispositions are judged.",
-		"clue_author": "Phillipa Foot"
+		"clue_author": "Phillipa Foot",
+		"task_name": "gt-seminar"
 	},
 	{
 		"floor": 0,
-		"number": "AG32B",
+		"number": "Atrium",
 		"clue_text": "If we can't think for ourselves, if we're unwilling to question authority, then we're just putty in the hands of those in power. But if the citizens are educated and form their own opinions, then those in power work for us.",
-		"clue_author": "Carl Sagan"
+		"clue_author": "Carl Sagan",
+		"task_name": "pi-seminar"
 	}
 ]

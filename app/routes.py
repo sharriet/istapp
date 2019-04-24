@@ -18,7 +18,7 @@ def index():
     """
     pin = request.args.get('pin')
     if pin is not None and pin_exists(pin):
-        return redirect( url_for('map'), pin=pin )
+        return redirect( url_for('map', pin=pin) )
     else:
         return render_template('home.html', page="Home")
 
@@ -193,7 +193,7 @@ def phys_encrypt_index():
 def sorting_sorters():
     """ response to user input view for sorting sorters scenario
     """
-    resp = stt.listen_for_speech(trigwords=["bubble", "merge"])
+    resp = stt.listen_for_speech(trigwords=["bubble", "merge", "sorry"])
     if resp == "bubble":
         return render_template("sorters.html", page="Webchat", alg="bubble")
     elif resp == "merge":
