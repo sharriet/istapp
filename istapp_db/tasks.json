@@ -1,4 +1,22 @@
 [
+	{	"task_name": "explorers",
+		"title": "Tour of Genome Tech",
+		"task_text": "What are you doing here?",
+		"outcomes": [
+			{	"action": "",
+				"user_response": "I'm here to find answers",
+				"strength": "persistent,decision maker,explorative"
+			},
+			{	"action": "",
+				"user_response": "I'm here to explore",
+				"strength": "love of learning,explorative"
+			},
+			{	"action": "",
+				"user_response": "waiting for all this to end",
+				"strength": "critical"
+			}
+		]
+	},
 	{	"task_name": "gt-seminar",
 		"title": "Genome Tech Seminar",
 		"task_text": "What did you make of all that then?",
@@ -14,24 +32,6 @@
 			{	"action": "watched the video",
 				"user_response": "boredom and confusion",
 				"strength": "explorative"
-			}
-		]
-	},
-	{	"task_name": "explorers",
-		"title": "Tour of Genome Tech",
-		"task_text": "What are you doing here?",
-		"outcomes": [
-			{	"action": "",
-				"user_response": "I'm here to for answers",
-				"strength": "persistent,decision maker,explorative"
-			},
-			{	"action": "",
-				"user_response": "I'm here to explore",
-				"strength": "love of learning,explorative"
-			},
-			{	"action": "",
-				"user_response": "waiting for all this to end",
-				"strength": "critical"
 			}
 		]
 	},
@@ -76,7 +76,7 @@
 		]
 	},
 	{	"task_name": "desktop-hackers",
-		"title": "Desktop Hackers",
+		"title": "Database Hackers",
 		"task_text": "What do you think happened?",
 		"outcomes": [
 			{	"action": "reset password",
