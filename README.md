@@ -1,4 +1,4 @@
-# 4000 Immersive Game: 'ISTApp'
+# Interactive Storytelling App ('ISTApp')
 
 **Under development!**
 
@@ -8,15 +8,24 @@ This application provides the basic framework for any number of interactive stor
 
 Fork and edit for your own scenario!
 
-## Prerequisites
+
+## Docker Deploy
+
+		docker-compose up
+
+Should be enough to get it going in multi container.
+
+## Local Deploy
+
+**These insructions are somewhat broken and ignore the pyaudio dependencies required for one of the scenario views to work (although it's assumed you'd edit those anyway).**
+
+### Prerequisites
 
 To run this version of the app locally you need to have Python 3 and venv installed on your machine.
 
 For help using Python virtual environments, please refer to the [venv documentation](https://docs.python.org/3/library/venv.html).
 
 You also need MongoDB version 3.6.9. The app will most likely work with versions of MongoDB >=3.2 but it has not been tested.
-
-## Installation
 
 To prepare the dev environment on your machine,
 
@@ -27,7 +36,7 @@ To prepare the dev environment on your machine,
 + Rename `config.py.example` as `config.py`
 + Edit the mongo URI if neccessary
 
-## Running the app
+### Running the app
 
 + First initialise the database:
 		
