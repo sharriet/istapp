@@ -85,3 +85,17 @@ h1 {
 #call-ended .btn i {
 	margin-right: 5px;
 }
+#tip {
+	position: absolute;
+	padding: 10px;
+	top: 35%;
+	left: 25%;
+	z-index: 1000;
+	background: #fff;
+	border: 2px solid rgb(200, 40, 20);
+	display: block;
+	width: 50%;
+	height: 30%;
+	font-weight: bold;
+	text-align: center;
+}

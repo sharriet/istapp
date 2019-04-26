@@ -166,6 +166,15 @@ def desktop_hackers_submit():
     else:
         return redirect(url_for('desktop_hackers_login'))
 
+@app.route('/desktop-hackers-index')
+def desktop_hackers_index():
+    """ the fake Genome Tech home view """
+    if session.get('logged_in'):
+        return redirect(url_for('phys_encrypt_index'))
+    else:
+        return redirect(url_for('desktop_hackers_login'))
+
+
 # SCENARIO/TASK 2: CAESAR CIPHER
 @app.route('/phys-encrypt', methods=["GET", "POST"])
 def phys_encrypt_index():
