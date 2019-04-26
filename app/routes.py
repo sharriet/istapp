@@ -4,7 +4,7 @@ from random import randint
 from string import ascii_letters
 import string
 
-import speech_to_text as stt
+#import speech_to_text as stt
 
 # ----------------------
 # GAME FRAMEWORK ROUTES
@@ -45,7 +45,7 @@ def pingen():
     for i in range(0,5):
         pin += ascii_letters[randint(0,len(ascii_letters)-1)]
     if not pin_exists(pin):
-        _id = mongo.db.profiles.insert_one({"game_pin": pin})
+        _id = mongo.profiles.insert_one({"game_pin": pin})
     if _id.inserted_id:
         return render_template('pingen.html', pin=pin, success=True, page="Generate game pin")
     else:
@@ -57,9 +57,9 @@ def map():
     """
     pin = request.args.get('pin')
     if pin is not None and pin_exists(pin):
-        gf_rooms = mongo.db.rooms.find({"floor": 0})
+        gf_rooms = mongo.rooms.find({"floor": 0})
         print(gf_rooms)
-        #ff_rooms = mongo.db.rooms.find({"floor": 1})
+        #ff_rooms = mongo.rooms.find({"floor": 1})
         return render_template('map.html', gf_rooms=gf_rooms,
                 pin=pin, page="map")
     else:
@@ -79,12 +79,12 @@ def end():
 def score():
     pin = request.args.get('pin')
     if pin is not None:
-        cur = mongo.db.profiles.find({"game_pin": pin}).limit(1)
+        cur = mongo.profiles.find({"game_pin": pin}).limit(1)
         if cur.count() > 0:
             print(cur)
             docs = [doc for doc in cur]
             best_role = get_best_role(docs[0])
-            cur = mongo.db.roles.find({"title": best_role}).limit(1)
+            cur = mongo.roles.find({"title": best_role}).limit(1)
             docs = [doc for doc in cur] 
             return render_template('score.html', page='scoreboard', role=docs[0])
         else:
@@ -99,7 +99,7 @@ def task():
     pin = request.args.get('pin')
     if task_name is not None and task_exists(task_name) \
             and pin is not None and pin_exists(pin):
-        cur = mongo.db.tasks.find({"task_name":task_name}).limit(1)
+        cur = mongo.tasks.find({"task_name":task_name}).limit(1)
         docs = [doc for doc in cur] 
         return render_template('task.html', pin=pin, task=docs[0], page='Take task')
     else:
@@ -152,7 +152,7 @@ def desktop_hackers_submit():
     if session.get('logged_in'):
         response_text = ""
         if request.method == "POST":
-            cur = mongo.db.tasks.find({"task_name": "desktop-hackers"}).limit(1)
+            cur = mongo.tasks.find({"task_name": "desktop-hackers"}).limit(1)
             docs = [doc for doc in cur]
             for outcome in docs[0]["outcomes"]:
                 if outcome["action"] == request.form["action"]:
@@ -202,7 +202,8 @@ def phys_encrypt_index():
 def sorting_sorters():
     """ response to user input view for sorting sorters scenario
     """
-    resp = stt.listen_for_speech(trigwords=["bubble", "merge", "sorry"])
+    # speech to text currently only supported on local deployment
+    resp = "bubble"#stt.listen_for_speech(trigwords=["bubble", "merge", "sorry"])
     if resp == "bubble":
         return render_template("sorters.html", page="Webchat", alg="bubble")
     elif resp == "merge":
@@ -250,7 +251,7 @@ def caesar(plaintext, shift):
 def update_strength(pin, strength):
     """ increment a strength in a specified profile
     """
-    result = mongo.db.profiles.update(
+    result = mongo.profiles.update(
             { "$or" : [
                 {"game_pin" : pin, "strengths."+strength: {"$exists": False}},
                 {"game_pin": pin, "strengths."+strength: { "$lt": 5, "$gte": 0 }}]},
@@ -259,7 +260,7 @@ def update_strength(pin, strength):
 
 def pin_exists(pin):
     """ check if pin exists """
-    cur = mongo.db.profiles.find({"game_pin": pin}).limit(1)
+    cur = mongo.profiles.find({"game_pin": pin}).limit(1)
     if cur.count() > 0:
         return True
     else:
@@ -267,7 +268,7 @@ def pin_exists(pin):
 
 def task_exists(task_name):
     """ check if specified task exists """
-    cur = mongo.db.tasks.find({"task_name": task_name}).limit(1)
+    cur = mongo.tasks.find({"task_name": task_name}).limit(1)
     if cur.count() > 0:
         return True
     else:
@@ -275,7 +276,7 @@ def task_exists(task_name):
 
 def get_best_role(doc):
     """ calcs best fitting cs role for a profile document """
-    roles = mongo.db.roles.find()
+    roles = mongo.roles.find()
     best_score = 20
     for role in roles:
         score = 0

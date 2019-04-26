@@ -1,0 +1,28 @@
+version: '2'
+services:
+    app:
+        build: .
+        command: python -u run.py
+        ports:
+            - 5000:5000
+        volumes:
+            - .:/app
+        links:
+            - mongodb
+        environment:
+            MONGODB_HOST: mongodb
+        depends_on:
+            - mongodb
+    mongodb:
+        image: mongo:3.4.20-jessie
+        ports:
+            - 27017:27017
+    mongo_seed:
+        image: mongo:3.4.20-jessie
+        links:
+            - mongodb
+        volumes:
+            - ./mongo-seed:/mongo-seed
+        command:
+            /mongo-seed/import.sh
+
