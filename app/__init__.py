@@ -9,7 +9,7 @@ app.config.from_object(Config)
 
 #mongo = PyMongo(app) # local deploy
 
-client = MongoClient(app.config['MONGODB_HOST'], app.config['MONGODB_PORT'])
+client = MongoClient(app.config['MONGODB_HOST'])
 mongo = client.istapp
 
 from app import routes
