@@ -4,11 +4,15 @@ from random import randint
 from string import ascii_letters
 import string
 
-#import speech_to_text as stt
+import speech_to_text as stt
 
 # ----------------------
 # GAME FRAMEWORK ROUTES
 # ----------------------
+
+@app.route('/loaderio-810237ef6bd28dfeb22830a43dbde219/')
+def loader():
+    return 'loaderio-810237ef6bd28dfeb22830a43dbde219'
 
 @app.route('/')
 def index():
@@ -131,12 +135,12 @@ def desktop_hackers_login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if username == "b.jameson" and password == "poppy2009":
+        if username == "jokon" and password == "poppy2009":
             session['logged_in'] = True
             return redirect(url_for('desktop_hackers_index'))
         else:
             errs = []
-            if username != "b.jameson":
+            if username != "jokon":
                 errs.append("username")
             if password != "poppy2009":
                 errs.append("password")
@@ -202,8 +206,7 @@ def phys_encrypt_index():
 def sorting_sorters():
     """ response to user input view for sorting sorters scenario
     """
-    # speech to text currently only supported on local deployment
-    resp = "bubble"#stt.listen_for_speech(trigwords=["bubble", "merge", "sorry"])
+    resp = "merge"#stt.listen_for_speech(trigwords=["bubble", "merge", "sorry"])
     if resp == "bubble":
         return render_template("sorters.html", page="Webchat", alg="bubble")
     elif resp == "merge":

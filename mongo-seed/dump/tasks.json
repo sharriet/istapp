@@ -13,7 +13,7 @@
 			},
 			{	"action": "",
 				"user_response": "waiting for all this to end",
-				"strength": "critical"
+				"strength": "consistent,literal"
 			}
 		]
 	},
@@ -31,7 +31,7 @@
 			},
 			{	"action": "watched the video",
 				"user_response": "boredom and confusion",
-				"strength": "explorative"
+				"strength": "literal,consistent"
 			}
 		]
 	},
@@ -49,7 +49,7 @@
 			},
 			{	"action": "",
 				"user_response": "more boredom and confusion",
-				"strength": "explorative"
+				"strength": "literal,consistent"
 			}
 		]
 	},
@@ -71,7 +71,7 @@
 			},
 			{	"action": "unsure",
 				"user_response": "your guess is as good as mine",
-				"strength": "responsible"
+				"strength": "consistent,literal"
 			}
 		]
 	},
